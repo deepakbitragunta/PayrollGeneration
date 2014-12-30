@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+"http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd"> 
+
+<struts-config>
+
+<form-beans>
+	<form-bean name="employeeInfoForm" type="com.adp.dto.EmployeeInfoForm"></form-bean>
+
+	<form-bean name="employeeInfoDeleteForm" type="com.adp.dto.EmployeeInfoDeleteForm"></form-bean>
+	
+    <form-bean name="detailsForm" type="com.adp.dto.CompanyDetailsForm"/>
+    
+     <form-bean name="insertForm" type="com.adp.dto.InsertCompanyDetailsForm"/>
+    
+    <form-bean name="employeeInfoRetrieveForm" type="com.adp.dto.EmployeeInfoRetrieveForm"></form-bean>
+	
+	<form-bean name="employeeInfoClickToModifyForm" type="com.adp.dto.EmployeeInfoClickToModifyForm"></form-bean>	
+    
+    <form-bean name="businessunitForm" type="com.adp.dto.BusinessUnitDetailsForm"/>
+    
+    <form-bean name="updateForm" type="com.adp.dto.CompanyUpdateForm"/>
+  
+    <form-bean name = "JobDetailsForm" type = "com.adp.dto.JobDetailsForm"></form-bean>
+
+	<form-bean name = "PositionDetailsForm" type = "com.adp.dto.PositionDetailsForm"></form-bean>
+	
+	<form-bean name = "empForm" type = "com.adp.dto.EmploymentForm"></form-bean>
+	
+	<form-bean name = "earndedForm" type = "com.adp.dto.EarnDedForm"></form-bean>
+    
+    <form-bean name="earningsadd" type="com.adp.dto.AddEarningsForm"/>
+ 
+    <form-bean name="earningsdel" type="com.adp.dto.DeleteEarningsForm"/>
+ 
+    <form-bean name="earningsmodify" type="com.adp.dto.ModifyEarningsForm"/>
+ 
+    <form-bean name="deductionsadd" type="com.adp.dto.AddDeductionsForm"/>
+ 
+    <form-bean name="deductionsdel" type="com.adp.dto.DeleteDeductionsForm"/>
+ 
+    <form-bean name="deductionsmodify" type="com.adp.dto.ModifyDeductionsForm"/>
+    
+ 	<form-bean name="appointForm" type="com.adp.dto.AppointmentForm"/>
+ 	
+ 	<form-bean name = "codeDetails" type = "com.adp.dto.EmployeeCodeForm"/>
+ 	
+ 	 <form-bean name="payCalendarForm" type="com.adp.dto.PayCalendarForm"/>
+    
+    <form-bean name="payCalendarGenerateForm" type="com.adp.dto.PayCalendarForm"/>	
+ 	
+ 	<form-bean name="periodNo" type="com.adp.dto.payrollForm"/>	
+ 	
+ 	<form-bean name="loginForm" type="com.adp.dto.LoginForm"></form-bean>
+ 	
+</form-beans>
+
+<action-mappings>
+	
+	<action path="/insertcompanyDetails" name="insertForm" type="com.adp.action.InsertCompanyDetailsAction" scope="session" input="/CompanyInsert.jsp">
+      <forward name="SS" path="/success.jsp"/>
+      <forward name="FF" path="/failure.jsp"/>
+    </action>
+ 
+    <action path="/signout" type="com.adp.action.LogoutAction" scope="session" input="/logout.jsp">
+      <forward name="ss" path="/Login.jsp"/>
+    </action>
+    
+    <action path="/signout" type="com.adp.action.LogoutAction" scope="session" input="/logout1.jsp">
+      <forward name="ss" path="/Login.jsp"/>
+    </action>
+ 
+    <action path="/control" name="insertForm" type="com.adp.action.checkControlAction" scope="session" input="/CreateCompany.jsp">
+      <forward name="insert" path="/CompanyInsert.jsp"/>
+      <forward name="update" path="/CompanyUpdate.jsp"/>
+       <forward name="ff" path="/failure.jsp"/>
+    </action>
+ 
+		<action path="/LoginInfo"
+			input="/Login.jsp"
+			scope="session"
+			name="loginForm"
+			type="com.adp.action.LoginAction">
+		<forward name="admin" path="/CreateCompany.jsp"></forward>
+		<forward name="user" path="/user.jsp"></forward>
+		<forward name="invalidUser" path="/Login.jsp"></forward>
+	</action>
+	
+	<action path="/appoint" input="/AppopintmentAdd.jsp" scope="session" validate="false" name="appointForm" type="com.adp.action.AppointmentAction">
+		<forward name="success" path="/StrutEmployment.jsp">	</forward>
+		<forward name="failure" path="/failure.jsp">	</forward>
+	</action>
+	<action path="/employeeInfo"
+			input="/EmployeeInfo.jsp"
+			scope="session"
+			name="employeeInfoForm"
+			type="com.adp.action.EmployeeInfoAction">
+		<forward name="success" path="/AppointmentAdd.jsp"></forward>
+		<forward name="failure" path="/failure.jsp"></forward>
+	</action>
+
+	<action path="/employeeInfoDelete"
+			input="/EmployeeInfoDelete.jsp"
+			scope="session"
+			name="employeeInfoDeleteForm"
+			type="com.adp.action.EmployeeInfoDeleteAction">
+		<forward name="success" path="/success.jsp"></forward>
+		<forward name="failure" path="/failure.jsp"></forward>
+	</action>
+	
+	<action path="/employeeInfoRetrieval"
+			input="/EmployeeInfoRetrieve.jsp"
+			scope="session"
+			name="employeeInfoRetrieveForm"
+			type="com.adp.action.EmployeeInfoRetrievalAction">
+		<forward name="success" path="/success.jsp"></forward>
+		<forward name="failure" path="/failure.jsp"></forward>
+	</action>
+	
+	<action path="/employeeInfoClickToModify"
+			input="/EmployeeInfoClickToModify.jsp"
+			scope="session"
+			name="employeeInfoClickToModifyForm"
+			type="com.adp.action.EmployeeInfoClickToModifyAction">
+		<forward name="success" path="/EmployeeInfoRetrieve.jsp"></forward>
+		<forward name="failure" path="/failure.jsp"></forward>
+	</action>
+
+	 <action path="/updateCompanyDetails" name="detailsForm" type="com.adp.action.CompanyDetailsAction" scope="session" input="/CompanyDetails.jsp">
+      <forward name="SS" path="/success.jsp"/>
+      <forward name="FF" path="/failure.jsp"/>
+    </action>
+ 
+    <action path="/addbusinessunit" name="businessunitForm" type="com.adp.action.BusinessUnitDetailsAction" scope="session" input="/BusinessUnitDetails.jsp">
+      <forward name="SS" path="/success.jsp"/>
+      <forward name="FF" path="/failure.jsp"/>
+    </action>
+ 
+    <action path="/Details" name="updateForm" type="com.adp.action.CompanyUpdateAction" scope="session" input="/CompanyUpdate.jsp">
+      <forward name="0" path="/CompanyDetails.jsp"/>
+    </action>
+ 
+	<action
+		path = "/login"
+		input = "/JobDetails.jsp"
+		scope= "session"
+		name= "JobDetailsForm" 
+		type ="com.adp.action.JobDetailsAction"> 
+					
+			<forward name = "TT" path = "/success.jsp" ></forward>	
+			<forward name = "FF" path = "/failure.jsp"></forward>
+		</action>
+	
+		<action
+		path = "/position"
+		input = "/PositionDetails.jsp"
+		scope= "session"
+		name= "PositionDetailsForm" 
+		type ="com.adp.action.PositionDetailsAction"> 
+					
+			<forward name = "TT" path = "/success.jsp" ></forward>	
+			<forward name = "FF" path = "/failure.jsp"></forward>
+		</action>
+	
+	<action
+			path = "/emp"
+			input = "/StrutEmployment.jsp"
+			scope = "session"
+			validate = "false"
+			name = "empForm"
+			type = "com.adp.action.EmploymentAction">
+				
+			<forward name = "success" path = "/StrutEarnDed.jsp">	</forward>
+			 <forward name = "failure" path = "/failure.jsp">	</forward>
+		</action>
+		
+		<action
+			path = "/earnded"
+			input = "/StrutEarnDed.jsp"
+			scope = "session"
+			validate = "false"
+			name = "earndedForm"
+			type = "com.adp.action.EmpEarnDedAction">
+				
+			<forward name = "success" path = "/success.jsp">	</forward>
+			 <forward name = "failure" path = "/failure.jsp">	</forward>
+		</action>
+	
+		<action 
+    path="/addEarnings" 
+    name="earningsadd" 
+    type="com.adp.action.AddEarningsAction" 
+    scope="session" 
+    validate="false"
+     input="/EarningAdd.jsp">
+      <forward name="1" path="/success.jsp"/>
+      <forward name="0" path="/failure.jsp"/>
+    </action>
+    
+    <action 
+    path="/modify" 
+    name="earningsadd" 
+    type="com.adp.action.ModifyAction" 
+    scope="session" 
+    validate="false"
+     input="/modifyEarning.jsp">
+      <forward name="1" path="/success.jsp"/>
+      <forward name="0" path="/failure.jsp"/>
+    </action>
+    
+    <action path="/delEarnings" name="earningsdel" type="com.adp.action.DeleteEarningsAction" scope="session" validate="false" input="/EarningDelete.jsp">
+      <forward name="1" path="/success.jsp"/>
+      <forward name="0" path="/failure.jsp"/>
+    </action>
+    
+    <action path="/modifyEarnings" name="earningsmodify" type="com.adp.action.ModifyEarningsAction" scope="session" validate="false" input="/EarningModify.jsp">
+      <forward name = "0" path="/modifyEarning.jsp"/>
+     </action>
+     
+    <action path="/addDeductions" name="deductionsadd" type="com.adp.action.AddDeductionsAction" scope="session" validate="false" input="/DeductionsAdd.jsp">
+      <forward name="1" path="/success.jsp"/>
+      <forward name="0" path="/failure.jsp"/>
+    </action>
+    
+    <action path="/delDeductions" name="deductionsdel" type="com.adp.action.DeleteDeductionsAction" scope="session" validate="false" input="/DeductionsDelete.jsp">
+      <forward name="1" path="/success.jsp"/>
+      <forward name="0" path="/failure.jsp"/>
+    </action>
+    
+    <action path="/modifyDeductions" name="deductionsmodify" type="com.adp.action.ModifyDeductionsAction" scope="session" validate="false" input="/DeductionsModify.jsp">
+      <forward name="1" path="/success.jsp"/>
+      <forward name="0" path="/failure.jsp"/>
+    </action>
+		
+		<action 
+    path="/getPaySlip" 
+    name="codeDetails" 
+    type="com.adp.action.GetPaySlipAction" 
+    scope="session" 
+    validate="false"
+     input="/Disp.jsp">
+      <forward name="1" path="/AddEarningSuccess.jsp"/>
+      <forward name="0" path="/failure.jsp"/>
+    </action>
+    
+    	<action 
+    path="/payroll" 
+    name="codeDetails" 
+    type="com.adp.action.GetPaySlipAction" 
+    scope="session" 
+    validate="false"
+     input="/user.jsp">
+      <forward name="1" path="/paySlipUser.jsp"/>
+      <forward name="0" path="/failure.jsp"/>
+    </action>
+    
+    <action path="/paycalendar" name="payCalendarForm" type="com.adp.action.PayCalendarAction" scope="session" input="/PayCalendarPage.jsp">
+      <forward name="MONTHLY" path="/payCalendarMonthly.jsp"/>
+      <forward name="WEEKLY" path="/failure.jsp"/>
+    </action>
+  
+    <action path="/payCalendarGenerate" name="payCalendarGenerateForm" type="com.adp.action.PayCalendarAction" scope="session" input="/PayCalendarGenerate.jsp">
+      <forward name="CALENDARGENERATION" path="/payCalendarGeneration.jsp"/>
+      <forward name="WEEKLY" path="/PayCalendarWeekly.jsp"/>
+    </action>
+    
+    <action path="/getInfo" name="periodNo" type="com.adp.action.payrollAction" scope="session" input="/PayCalendarGeneration.jsp">
+      <forward name="Success" path="/Disp.jsp"/>
+      <forward name="failure" path="/failure.jsp"/>
+    </action>
+   
+   
+      
+</action-mappings>
+</struts-config>
